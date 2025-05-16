@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "467558598138",
+    "project_id": "umtrack-fa72e",
+    "storage_bucket": "umtrack-fa72e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467558598138:android:6ec349226c517610d01043",
+        "android_client_info": {
+          "package_name": "com.example.umtrack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467558598138-53doimbh0g0l0tifc9588lfjdtiihup0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnrG9uq2BJO4PMPamg-tjVFFQ0gbeYL24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467558598138-53doimbh0g0l0tifc9588lfjdtiihup0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
