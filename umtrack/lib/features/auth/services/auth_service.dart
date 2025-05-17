@@ -15,10 +15,11 @@ class AuthService {
     required String password,
     required DateTime birthday,
     String? major, // para estudiantes
-    List<dynamic>? passedCourses,
-    DateTime? dateOfEnrollment,
+    List<dynamic>? passedCourses, // para estudiantes
+    DateTime? dateOfEnrollment,// para estudiantes
     List<dynamic>? assignedCourses, // para profesores
-    DateTime? dateOfHiring,
+    DateTime? dateOfHiring,// para profesores
+    int? credits, // para estudiantes
   }) async {
     final result = await _auth.createUserWithEmailAndPassword(
       email: email,
@@ -44,6 +45,7 @@ class AuthService {
         major: major ?? '',
         passedCourses: passedCourses ?? [],
         dateOfEnrollment: dateOfEnrollment ?? now,
+        credits: credits ?? 0
       );
       userJson = _studentToJson(student);
     } else if (role == 'professor') {

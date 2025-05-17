@@ -1,5 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+DateTime _fromTimestampOrDate(dynamic value) {
+  if (value is Timestamp) {
+    return value.toDate();
+  } else if (value is String) {
+    return DateTime.parse(value);
+  } else if (value is DateTime) {
+    return value;
+  } else {
+    throw Exception('Tipo inesperado para fecha: $value');
+  }
+}
+
 /// Clase base con campos comunes a todos los usuarios
 abstract class BaseUser {
   final String userId;
@@ -30,6 +42,7 @@ class StudentUser extends BaseUser {
   final String major;
   final List<dynamic> passedCourses;
   final DateTime dateOfEnrollment;
+  final int credits;
 
   StudentUser({
     required super.userId,
@@ -44,6 +57,7 @@ class StudentUser extends BaseUser {
     required this.major,
     required this.passedCourses,
     required this.dateOfEnrollment,
+    required this.credits,
   });
 
   factory StudentUser.fromJson(Map<String, dynamic> json) => StudentUser(
@@ -51,14 +65,15 @@ class StudentUser extends BaseUser {
     fullName: json['fullName'],
     username: json['username'],
     email: json['email'],
-    birthday: DateTime.parse(json['birthday']),
+    birthday: _fromTimestampOrDate(json['birthday']),
     profileImageUrl: json['profileImageUrl'],
     role: json['role'],
-    createdAt: DateTime.parse(json['createdAt']),
-    lastLoginAt: DateTime.parse(json['lastLoginAt']),
+    createdAt: _fromTimestampOrDate(json['createdAt']),
+    lastLoginAt: _fromTimestampOrDate(json['lastLoginAt']),
     major: json['major'],
     passedCourses: List<dynamic>.from(json['passedCourses']),
-    dateOfEnrollment: DateTime.parse(json['dateOfEnrollment']),
+    dateOfEnrollment: _fromTimestampOrDate(json['dateOfEnrollment']),
+    credits: json['credits'],
   );
 }
 
@@ -86,13 +101,13 @@ class ProfessorUser extends BaseUser {
     fullName: json['fullName'],
     username: json['username'],
     email: json['email'],
-    birthday: DateTime.parse(json['birthday']),
+    birthday: _fromTimestampOrDate(json['birthday']),
     profileImageUrl: json['profileImageUrl'],
     role: json['role'],
-    createdAt: DateTime.parse(json['createdAt']),
-    lastLoginAt: DateTime.parse(json['lastLoginAt']),
+    createdAt: _fromTimestampOrDate(json['createdAt']),
+    lastLoginAt: _fromTimestampOrDate(json['lastLoginAt']),
     assignedCourses: List<dynamic>.from(json['assignedCourses']),
-    dateOfHiring: DateTime.parse(json['dateOfHiring']),
+    dateOfHiring: _fromTimestampOrDate(json['dateOfHiring']),
   );
 }
 
